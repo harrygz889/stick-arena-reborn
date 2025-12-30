@@ -1,0 +1,38 @@
+import { Player } from "../entity/Player";
+import { SocketManager } from "../manager/SocketManager";
+
+export class PlayerBuilder {
+  private x: number; // The player's x-coordinate
+  private y: number; // The player's y-coordinate
+  private getPlayers: () => Record<string, Player>; // Function to get all players
+  private socketManager: SocketManager;
+
+  constructor(getPlayers: () => Record<string, Player>, socketManager: SocketManager) {
+    this.x = 0; // Default x-coordinate
+    this.y = 0; // Default y-coordinate
+    this.getPlayers = getPlayers;
+    this.socketManager = socketManager;
+  }
+
+  public withGetPlayers(getPlayers: () => Record<string, Player>): this {
+    this.getPlayers = getPlayers;
+    return this;
+  }
+
+  // Set the x-coordinate of the player and return `this` for method chaining
+  public withX(x: number): this {
+    this.x = x;
+    return this;
+  }
+
+  // Set the y-coordinate of the player and return `this` for method chaining
+  public withY(y: number): this {
+    this.y = y;
+    return this;
+  }
+
+  // Build method that constructs a new Player instance based on the builder's properties
+  public build(): Player {
+    return new Player(this.x, this.y, this.getPlayers, this.socketManager);
+  }
+}

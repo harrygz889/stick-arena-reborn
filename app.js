@@ -9,7 +9,7 @@ const Player = require("./server/models/Player");
 
 app.use(express.static(path.join(__dirname, "client")));
 
-app.get("/", (req, res) => {
+app.get("/", (_, res) => {
   res.sendFile(path.join(__dirname, "client/index.html"));
 });
 
@@ -58,7 +58,7 @@ io.on("connection", (socket) => {
     if (!(player in players)) return;
 
     players[player].health -= 20;
-    
+
     if (players[player].health <= 0) {
       socket.emit("playerDied", {
         playerId: data.playerId

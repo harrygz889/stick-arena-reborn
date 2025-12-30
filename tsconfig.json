@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                         // Compile to ES6 (or higher)
+    "module": "ES6",                         // Use ES6 module system
+    "lib": ["ES6", "DOM"],
+    "strict": true,                          // Enable strict type checking
+    "esModuleInterop": true,                 // Allow default imports of CommonJS modules
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "baseUrl": "./",                         // Base path for resolving non-relative module imports
+    "outDir": "dist",                         // Output compiled files to "dist"
+    "moduleResolution": "node",
+    "paths": {
+      "*": ["node_modules/*"]
+    },
+    "rootDir": "./client"                       // Specify the root directory of input files
+  },
+  "include": ["client/**/*.ts"],                        // Include all TypeScript files in the project
+  "exclude": [
+    "node_modules",                         // Exclude dependencies
+    "dist"                                  // Exclude output directory
+  ]
+}
